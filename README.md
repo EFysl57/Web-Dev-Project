@@ -8,4 +8,4 @@ This project demonstrates the basics of full-stack development and interaction b
 
 
 
-Кадирсизов Аскар, Сакенұлы Данияр, Исабеков Галымжан
+Kadirsizov Askar, Issabekov Galymzhan, Sakenuly Daniyar.
