@@ -1,1 +1,11 @@
-<p>home-component works!</p>
+<div class="container">
+    @for (p of products; track p.id) {
+        <div class="card" *ngFor="let p of products">
+            <h3 (click)="goToProduct(p.id)">{{p.name}}</h3>
+            <p>{{p.price}}</p>
+
+            <button (click)="addToCart(p.id)">Add to cart</button>
+        </div>
+    }
+  
+</div>

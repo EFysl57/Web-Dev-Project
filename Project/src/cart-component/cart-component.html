@@ -1,1 +1,4 @@
-<p>cart-component works!</p>
+<div *ngFor="let item of cart">
+  {{item.product.name}} ({{item.quantity}})
+  <button (click)="remove(item.id)">Remove</button>
+</div>
