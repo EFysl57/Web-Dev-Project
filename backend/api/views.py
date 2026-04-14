@@ -61,6 +61,9 @@ class AddToCart(APIView):
         return Response({'status': 'added'})
 
 
+
+
+
 class RemoveFromCart(APIView):
     permission_classes = [IsAuthenticated]
 
