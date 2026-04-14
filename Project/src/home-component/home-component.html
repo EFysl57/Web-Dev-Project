@@ -1,6 +1,6 @@
 <div class="container">
     @for (p of products; track p.id) {
-        <div class="card" *ngFor="let p of products">
+        <div class="card">
             <h3 (click)="goToProduct(p.id)">{{p.name}}</h3>
             <p>{{p.price}}</p>
 
