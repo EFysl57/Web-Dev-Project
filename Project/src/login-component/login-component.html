@@ -1,7 +1,7 @@
 <section class="login-page">
   <div class="login-card">
-    <h1>Вход в аккаунт</h1>
-    <p class="login-subtitle">Введите данные, чтобы продолжить работу с корзиной.</p>
+    <h1>Sign In</h1>
+    <p class="login-subtitle">Enter your details to continue to your cart.</p>
 
     <div class="login-form">
       <label for="email">Email</label>
@@ -9,18 +9,18 @@
         id="email"
         [(ngModel)]="username"
         type="email"
-        placeholder="Введите email"
+        placeholder="Enter your email"
       >
 
-      <label for="password">Пароль</label>
+      <label for="password">Password</label>
       <input
         id="password"
         [(ngModel)]="password"
         type="password"
-        placeholder="Введите пароль"
+        placeholder="Enter your password"
       >
 
-      <button type="button" class="primary-btn" (click)="login()">Войти</button>
+      <button type="button" class="primary-btn" (click)="login()">Sign In</button>
     </div>
   </div>
 </section>

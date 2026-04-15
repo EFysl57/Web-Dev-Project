@@ -1,27 +1,27 @@
 <section class="cart-page">
   <div class="cart-card">
     <div class="cart-header">
-      <h1>Корзина</h1>
-      <span class="cart-count">{{ cart.length }} товара</span>
+      <h1>Cart</h1>
+      <span class="cart-count">{{ cart.length }} items</span>
     </div>
 
     <div class="cart-list" *ngIf="cart.length; else emptyCart">
       <article class="cart-item" *ngFor="let item of cart">
         <div class="item-info">
           <h2>{{ item.product.name }}</h2>
-          <p>Количество: {{ item.quantity }}</p>
+          <p>Quantity: {{ item.quantity }}</p>
         </div>
 
         <button type="button" class="secondary-btn" (click)="remove(item.id)">
-          Удалить
+          Remove
         </button>
       </article>
     </div>
 
     <ng-template #emptyCart>
       <div class="empty-cart">
-        <h2>Корзина пока пустая</h2>
-        <p>Добавьте товары на главной странице, и они появятся здесь.</p>
+        <h2>Your cart is empty</h2>
+        <p>Add products on the home page and they will appear here.</p>
       </div>
     </ng-template>
   </div>
