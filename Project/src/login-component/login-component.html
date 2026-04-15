@@ -1,4 +1,26 @@
-<input [(ngModel)]="username" placeholder="username">
-<input [(ngModel)]="password" type="password">
+<section class="login-page">
+  <div class="login-card">
+    <h1>Вход в аккаунт</h1>
+    <p class="login-subtitle">Введите данные, чтобы продолжить работу с корзиной.</p>
 
-<button (click)="login()">Login</button>
+    <div class="login-form">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        [(ngModel)]="username"
+        type="email"
+        placeholder="Введите email"
+      >
+
+      <label for="password">Пароль</label>
+      <input
+        id="password"
+        [(ngModel)]="password"
+        type="password"
+        placeholder="Введите пароль"
+      >
+
+      <button type="button" class="primary-btn" (click)="login()">Войти</button>
+    </div>
+  </div>
+</section>
