@@ -1,4 +1,28 @@
-<div *ngFor="let item of cart">
-  {{item.product.name}} ({{item.quantity}})
-  <button (click)="remove(item.id)">Remove</button>
-</div>
+<section class="cart-page">
+  <div class="cart-card">
+    <div class="cart-header">
+      <h1>Cart</h1>
+      <span class="cart-count">{{ cart.length }} items</span>
+    </div>
+
+    <div class="cart-list" *ngIf="cart.length; else emptyCart">
+      <article class="cart-item" *ngFor="let item of cart">
+        <div class="item-info">
+          <h2>{{ item.product.name }}</h2>
+          <p>Quantity: {{ item.quantity }}</p>
+        </div>
+
+        <button type="button" class="secondary-btn" (click)="remove(item.id)">
+          Remove
+        </button>
+      </article>
+    </div>
+
+    <ng-template #emptyCart>
+      <div class="empty-cart">
+        <h2>Your cart is empty</h2>
+        <p>Add products on the home page and they will appear here.</p>
+      </div>
+    </ng-template>
+  </div>
+</section>
