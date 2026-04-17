@@ -22,15 +22,15 @@ export class ApiService {
       return this.http.get(this.API + 'products/' + id + '/');
   }
 
-addToCart(productId: number) {
-  return this.http.post(this.API + 'cart/add/', {
-    product_id: productId
-  }, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-    }
-  });
-}
+  addToCart(productId: number) {
+    return this.http.post(this.API + 'cart/add/', {
+      product_id: productId
+    }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+  }
   getCart() {
     return this.http.get(this.API + 'cart/');
   }

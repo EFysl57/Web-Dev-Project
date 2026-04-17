@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api-service';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-cart-component',
   imports: [CommonModule],
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
 export class CartComponent {
   cart: any[] = [];
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.load();
@@ -19,6 +20,7 @@ export class CartComponent {
   load() {
     this.api.getCart().subscribe((data: any) => {
       this.cart = data;
+      this.cd.detectChanges();
     });
   }
 

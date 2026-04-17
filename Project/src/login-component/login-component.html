@@ -1,4 +1,10 @@
-<section class="login-page">
+<div *ngIf="isLoggedIn$ | async; else loginForm">
+  <h2>{{this.username}}</h2>
+  <button (click)="logout()">Log out</button>
+</div>
+
+<ng-template #loginForm>
+  <section class="login-page">
   <div class="login-card">
     <h1>Sign In</h1>
     <p class="login-subtitle">Enter your details to continue to your cart.</p>
@@ -24,3 +30,5 @@
     </div>
   </div>
 </section>
+
+</ng-template>
