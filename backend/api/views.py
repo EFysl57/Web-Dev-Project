@@ -4,11 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-
 from .models import Product, Cart, CartItem
 from .serializers import ProductSerializer, CartItemSerializer
-
-
+from rest_framework.permissions import AllowAny
 @api_view(['POST'])
 def login_view(request):
     user = authenticate(
@@ -22,12 +20,14 @@ def login_view(request):
 
 
 class ProductList(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         products = Product.objects.all()
         return Response(ProductSerializer(products, many=True).data)
 
 
 class ProductDetail(APIView):
+    permission_classes = [AllowAny]
     def get(self, request, pk):
         product = Product.objects.get(pk=pk)
         return Response(ProductSerializer(product).data)
@@ -35,8 +35,9 @@ class ProductDetail(APIView):
 
 class CartView(APIView):
     permission_classes = [IsAuthenticated]
-
     def get(self, request):
+        print(request.user)
+        print(request.user.is_authenticated)
         cart, _ = Cart.objects.get_or_create(user=request.user)
         items = CartItem.objects.filter(cart=cart)
         return Response(CartItemSerializer(items, many=True).data)
@@ -44,7 +45,7 @@ class CartView(APIView):
 
 class AddToCart(APIView):
     permission_classes = [IsAuthenticated]
-
+   
     def post(self, request):
         cart, _ = Cart.objects.get_or_create(user=request.user)
 

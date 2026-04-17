@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     
@@ -16,7 +18,7 @@ class Product(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cost = models.FloatField()
+    cost = models.FloatField(default=0)
     
 
 class CartItem(models.Model):
