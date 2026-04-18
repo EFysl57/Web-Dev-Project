@@ -14,12 +14,15 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   username = '';
   password = '';
+  user: any;
   isLoggedIn$: any;
   constructor(private api: ApiService, private cd: ChangeDetectorRef, private authService: AuthService, private router: Router) {
     this.isLoggedIn$ = this.authService.isLoggedIn$;
-
+    if(this.authService.isLoggedIn()) {
+      this.router.navigate(['profile']);
+    }
   }
-
+  
   login() {
     this.api.login({
       
@@ -28,9 +31,11 @@ export class LoginComponent {
     }).subscribe((res: any) => {
       console.log(res);
       this.authService.login(res.access);
+      this.router.navigate(['profile']);
     }) 
   }
-  logout() {
-    this.authService.logout();
-  }
+
+  
+
+  
 }

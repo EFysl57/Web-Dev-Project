@@ -128,7 +128,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-
+AUTH_USER_MODEL = 'api.User'
 STATIC_URL = 'static/'
 CORS_ALLOW_ALL_ORIGINS = True
 

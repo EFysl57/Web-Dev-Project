@@ -44,4 +44,8 @@ export class ApiService {
     return this.http.delete(this.API + 'cart/remove/' + id + '/');
   }
 
+
+  getUser() {
+    return this.http.get(this.API + 'profile/');
+  }
 }

@@ -1,23 +1,25 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import Product, Cart, CartItem
-from .serializers import ProductSerializer, CartItemSerializer
+from .models import Product, Cart, CartItem, User
+from .serializers import *
 from rest_framework.permissions import AllowAny
+from rest_framework import status
 @api_view(['POST'])
 def login_view(request):
-    user = authenticate(
-        username=request.data['username'],
-        password=request.data['password']
-    )
-    if user:
-        refresh = RefreshToken.for_user(user)
-        return Response({'access': str(refresh.access_token)})
-    return Response({'error': 'Invalid credentials'}, status=400)
+    serializer = LoginSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    
+    user = serializer.validated_data['user']
+    refresh = RefreshToken.for_user(user)
 
+    return Response({
+        'access': str(refresh.access_token),
+        'refresh': str(refresh),  
+    }, status=status.HTTP_200_OK)
 
 class ProductList(APIView):
     permission_classes = [AllowAny]
@@ -72,3 +74,10 @@ class RemoveFromCart(APIView):
         item = CartItem.objects.get(pk=pk)
         item.delete()
         return Response({'status': 'deleted'})
+    
+class UserProfile(APIView):
+
+    def get(self, request):
+        user = request.user
+        profile = UserSerializer(user)
+        return Response(profile.data)
