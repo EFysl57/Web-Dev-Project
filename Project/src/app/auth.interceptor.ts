@@ -4,7 +4,6 @@ import { AuthService } from "./auth.service";
 
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-    console.log("INTERCEPTOR WORKS");
     const authService = inject(AuthService);
     const token = authService.getToken();
     const isAuthRequired = req.url.includes('/cart');

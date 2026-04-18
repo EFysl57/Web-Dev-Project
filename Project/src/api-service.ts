@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from './app/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,8 @@ export class ApiService {
   }
 
   addToCart(productId: number) {
+
+
     return this.http.post(this.API + 'cart/add/', {
       product_id: productId
     }, {
@@ -32,6 +35,8 @@ export class ApiService {
     });
   }
   getCart() {
+
+
     return this.http.get(this.API + 'cart/');
   }
 

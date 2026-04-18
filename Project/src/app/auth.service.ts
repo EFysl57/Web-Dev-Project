@@ -15,6 +15,17 @@ export class AuthService {
     return localStorage.getItem('access');
   }
 
+
+  isLoggedIn(): boolean {
+    if(this.getToken()) {
+      return true;
+    }
+
+    else {
+      return false;
+    }
+  }
+
   login(token: string) {
     localStorage.setItem('access', token);
     this.loggedInSubject.next(true);

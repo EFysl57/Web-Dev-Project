@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ApiService } from '../api-service';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { AuthService } from '../app/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cart-component',
   imports: [CommonModule],
@@ -11,11 +13,23 @@ import { ChangeDetectorRef } from '@angular/core';
 export class CartComponent {
   cart: any[] = [];
 
-  constructor(private api: ApiService, private cd: ChangeDetectorRef) {}
+  constructor(private api: ApiService, private cd: ChangeDetectorRef, private authService: AuthService, private router: Router) {}
+
 
   ngOnInit() {
-    this.load();
+
+    if (this.authService.isLoggedIn()) {
+      this.load();
+    }
+
+    else {
+      this.router.navigate(['/login']);
+    }
+    
   }
+
+
+
 
   load() {
     this.api.getCart().subscribe((data: any) => {

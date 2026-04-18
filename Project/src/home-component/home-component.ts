@@ -3,6 +3,7 @@ import { ApiService } from '../api-service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { AuthService } from '../app/auth.service';
 
 @Component({
   selector: 'app-home-component',
@@ -14,7 +15,7 @@ import { ChangeDetectorRef } from '@angular/core';
 export class HomeComponent {
   products: any[] = [];
 
-  constructor(private api: ApiService, private router: Router, private cd: ChangeDetectorRef) {}
+  constructor(private api: ApiService, private router: Router, private cd: ChangeDetectorRef, private authService: AuthService) {}
 
   ngOnInit() {
     this.loadProducts();
@@ -29,7 +30,15 @@ export class HomeComponent {
   }
 
   addToCart(id: number) {
-    this.api.addToCart(id).subscribe();
+    if(this.authService.isLoggedIn()) {
+      this.api.addToCart(id).subscribe();
+    }
+
+    else {
+      this.router.navigate(['login']);
+    }
+
+    
   }
 
   goToProduct(id: number) {
