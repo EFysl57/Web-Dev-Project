@@ -1,9 +1,22 @@
-<nav>
-  <a routerLink="/">Home</a>
-  <a routerLink="/cart">Cart</a>
-  <a routerLink="/login">Login</a>
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-logo">
+      <a routerLink="/">🛍️ ShopHub</a>
+    </div>
+    <div class="navbar-menu">
+      <a routerLink="/" class="nav-link">Home</a>
+      <a routerLink="/cart" class="nav-link">
+        <span class="cart-icon">🛒</span> Cart
+      </a>
+      <a routerLink="/login" class="nav-link login-btn">Login</a>
+    </div>
+  </div>
 </nav>
 
-<hr>
-<p>ajofoafoa</p>
-<router-outlet></router-outlet>
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 ShopHub. All rights reserved.</p>
+</footer>

@@ -1,11 +1,54 @@
-<div class="container">
-    @for (p of products; track p.id) {
-        <div class="card">
-            <h3 (click)="goToProduct(p.id)">{{p.name}}</h3>
-            <p>{{p.price}}</p>
+<div class="home-container">
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Welcome to ShopHub</h1>
+      <p class="hero-subtitle">Discover amazing products at unbeatable prices</p>
+      <div class="hero-decorative"></div>
+    </div>
+  </section>
 
-            <button (click)="addToCart(p.id)">Add to cart</button>
-        </div>
+  <!-- PRODUCTS SECTION -->
+  <section class="products-section">
+    <div class="section-header">
+      <h2>Our Featured Products</h2>
+      <p class="section-subtitle">Handpicked for you</p>
+    </div>
+
+    @if (products.length === 0) {
+      <div class="loading">Loading products...</div>
+    } @else {
+      <div class="products-grid">
+        @for (p of products; track p.id) {
+          <div class="product-card">
+            <div class="product-image">
+              <div class="image-placeholder">
+                <span>{{ p.name.charAt(0).toUpperCase() }}</span>
+              </div>
+              <div class="product-badge">New</div>
+            </div>
+            
+            <div class="product-info">
+              <h3 class="product-name" (click)="goToProduct(p.id)">{{ p.name }}</h3>
+              
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">(42 reviews)</span>
+              </div>
+
+              <p class="product-description">Premium quality product</p>
+
+              <div class="product-footer">
+                <span class="price">${{ p.price }}</span>
+                <button class="add-to-cart-btn" (click)="addToCart(p.id)">
+                  <span class="cart-icon">🛒</span>
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
     }
-  
+  </section>
 </div>
