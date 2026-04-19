@@ -28,10 +28,6 @@ export class ApiService {
 
     return this.http.post(this.API + 'cart/add/', {
       product_id: productId
-    }, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
     });
   }
   getCart() {

@@ -6,6 +6,7 @@ from django.conf import settings
 
 class User(AbstractUser):
     phone = models.CharField(max_length=20, blank=True)
+    city = models.CharField(max_length=50, blank=True)
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -16,7 +17,8 @@ class Product(models.Model):
     image = models.CharField(max_length=500, default="")
     price = models.FloatField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
+    rating = models.FloatField(default=0)
+    description = models.CharField(max_length=2000,default='')
 
 
 class Cart(models.Model):

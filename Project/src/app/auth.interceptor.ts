@@ -6,8 +6,8 @@ import { AuthService } from "./auth.service";
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const authService = inject(AuthService);
     const token = authService.getToken();
-    const isAuthRequired = req.url.includes('/cart') || req.url.includes('/profile');
-    if (token && isAuthRequired) {
+    const requireToken = req.url.includes('cart')  || req.url.includes('profile');
+    if (token && requireToken) {
         req = req.clone({
         setHeaders: {
             Authorization: `Bearer ${token}`

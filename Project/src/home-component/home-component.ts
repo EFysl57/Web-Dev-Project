@@ -14,7 +14,7 @@ import { AuthService } from '../app/auth.service';
 })
 export class HomeComponent {
   products: any[] = [];
-
+  cart: any[] = [];
   constructor(private api: ApiService, private router: Router, private cd: ChangeDetectorRef, private authService: AuthService) {}
 
   ngOnInit() {
@@ -23,10 +23,11 @@ export class HomeComponent {
 
 
   loadProducts() {
-    this.api.getProducts().subscribe((data: any) => {
-      this.products = data;
-      this.cd.detectChanges();
-    });
+    this.api.getProducts().subscribe({
+      next: (data: any) => {
+        this.products = data;
+        this.cd.detectChanges();
+  }});
   }
 
   addToCart(id: number) {

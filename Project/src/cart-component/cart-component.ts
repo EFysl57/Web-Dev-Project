@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CartComponent {
   cart: any[] = [];
-
+  total_price = 0;
   constructor(private api: ApiService, private cd: ChangeDetectorRef, private authService: AuthService, private router: Router) {}
 
 
@@ -30,15 +30,21 @@ export class CartComponent {
 
 
 
-
   load() {
-    this.api.getCart().subscribe((data: any) => {
-      this.cart = data;
-      this.cd.detectChanges();
-    });
+    this.api.getCart().subscribe({
+      next: (data: any) => {
+        this.cart = data.items;
+        this.total_price = data.total;
+        this.cd.detectChanges();
+  }});
   }
 
   remove(id: number) {
     this.api.removeFromCart(id).subscribe(() => this.load());
+  }
+
+
+  buy_action() {
+    alert("Confirm operation");
   }
 }

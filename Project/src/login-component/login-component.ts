@@ -28,11 +28,11 @@ export class LoginComponent {
       
       username: this.username,
       password: this.password
-    }).subscribe((res: any) => {
-      console.log(res);
+    }).subscribe({
+      next: (res:any) => {
       this.authService.login(res.access);
       this.router.navigate(['profile']);
-    }) 
+    }});
   }
 
   

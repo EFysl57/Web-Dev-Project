@@ -89,6 +89,23 @@
   background: #b93232;
 }
 
+
+.total-cart {
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+}
+
+
+.buy-btn {
+  background-color: green;
+
+}
+
+.buy-btn:hover{
+  background-color: rgb(7, 71, 7);
+}
+
 .empty-cart {
   padding: 28px;
   border-radius: 16px;

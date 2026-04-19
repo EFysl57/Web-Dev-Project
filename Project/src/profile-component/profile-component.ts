@@ -21,11 +21,15 @@ export class ProfileComponent {
     this.getProfile()
   }
   getProfile() {
-    this.api.getUser().subscribe((data: any) => {
-      this.user = data;
-      this.cd.detectChanges();
+    this.api.getUser().subscribe({
+      next: (data: any) => {
+        this.user = data;
+        this.cd.detectChanges();
+      },
+    error: (err) => {
+      this.logout();
     }
-    );
+    })
   }
   
   logout() {

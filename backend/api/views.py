@@ -42,26 +42,29 @@ class CartView(APIView):
         print(request.user.is_authenticated)
         cart, _ = Cart.objects.get_or_create(user=request.user)
         items = CartItem.objects.filter(cart=cart)
-        return Response(CartItemSerializer(items, many=True).data)
+        total_cost =  sum(item.product.price * item.quantity for item in items)
 
+        return Response({
+            "items": CartItemSerializer(items, many=True).data,
+            "total": total_cost
+        })
 
-class AddToCart(APIView):
-    permission_classes = [IsAuthenticated]
-   
-    def post(self, request):
-        cart, _ = Cart.objects.get_or_create(user=request.user)
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_to_cart(request):
+    cart, _ = Cart.objects.get_or_create(user=request.user)
 
-        product_id = request.data.get('product_id')
-        item, created = CartItem.objects.get_or_create(
-            cart=cart,
-            product_id=product_id
-        )
+    product_id = request.data.get('product_id')
+    item, created = CartItem.objects.get_or_create(
+        cart=cart,
+        product_id=product_id
+    )
 
-        if not created:
-            item.quantity += 1
-            item.save()
+    if not created:
+        item.quantity += 1
+        item.save()
 
-        return Response({'status': 'added'})
+    return Response({'status': 'added'})
 
 
 
@@ -72,7 +75,12 @@ class RemoveFromCart(APIView):
 
     def delete(self, request, pk):
         item = CartItem.objects.get(pk=pk)
-        item.delete()
+        if(item):
+            if(item.quantity > 1):
+                item.quantity -= 1
+                item.save()
+            elif(item.quantity == 1):
+                item.delete()
         return Response({'status': 'deleted'})
     
 class UserProfile(APIView):

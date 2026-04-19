@@ -1,9 +1,11 @@
-<div *ngIf="user">
-  <p>Username: {{ user.username }}</p>
-  <p>Email: {{ user.email }}</p>
+@if(user) {
+<p>Username: {{ user.username }}</p>
+<p>Email: {{ user.email }}</p>
 <p>First Name: {{user.first_name}}</p>
 <p>Last Name: {{user.last_name}}</p>
+<p>Phone number: {{user.phone}}</p>
+<p>City: {{user.city}}</p>
 
-</div>
 
-  <button (click)="logout()">Log out</button>
+<button (click)="logout()" class="logout-btn">Log out</button>
+}
