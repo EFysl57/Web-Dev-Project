@@ -10,6 +10,8 @@
         <div class="item-info">
           <h2>{{ item.product.name }}</h2>
           <p>Quantity: {{ item.quantity }}</p>
+          <button (click)="update(item, item.quantity - 1)" class="quantity-btn">-</button>
+          <button (click)="update(item, item.quantity + 1)" class="quantity-btn">+</button>
         </div>
 
         <button type="button" class="secondary-btn" (click)="remove(item.id)">

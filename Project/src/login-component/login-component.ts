@@ -30,9 +30,13 @@ export class LoginComponent {
       password: this.password
     }).subscribe({
       next: (res:any) => {
-      this.authService.login(res.access);
-      this.router.navigate(['profile']);
-    }});
+        this.authService.login(res.access);
+        this.router.navigate(['profile']);
+      },
+      error: (err) => {
+        alert("Invalid crediantials");
+      }
+  });
   }
 
   

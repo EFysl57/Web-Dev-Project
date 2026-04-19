@@ -36,15 +36,29 @@ export class CartComponent {
         this.cart = data.items;
         this.total_price = data.total;
         this.cd.detectChanges();
-  }});
+      },
+      error: (err) => {
+        this.authService.logout();
+        this.router.navigate(['/login'])
+      }
+  });
   }
 
   remove(id: number) {
     this.api.removeFromCart(id).subscribe(() => this.load());
   }
 
+  update(item: any, quantity: number) {
+    this.api.updateCartItem(item.id, quantity).subscribe({
+      next: () => {
+      this.load();
+  }});
+  }
 
   buy_action() {
-    alert("Confirm operation");
+    if(this.cart.length) {
+      alert("Confirm operation");
+    }
+    
   }
 }

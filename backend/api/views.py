@@ -38,8 +38,6 @@ class ProductDetail(APIView):
 class CartView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
-        print(request.user)
-        print(request.user.is_authenticated)
         cart, _ = Cart.objects.get_or_create(user=request.user)
         items = CartItem.objects.filter(cart=cart)
         total_cost =  sum(item.product.price * item.quantity for item in items)
@@ -76,12 +74,8 @@ class RemoveFromCart(APIView):
     def delete(self, request, pk):
         item = CartItem.objects.get(pk=pk)
         if(item):
-            if(item.quantity > 1):
-                item.quantity -= 1
-                item.save()
-            elif(item.quantity == 1):
-                item.delete()
-        return Response({'status': 'deleted'})
+            item.delete()         
+            return Response({'status': 'deleted'})
     
 class UserProfile(APIView):
 
@@ -89,3 +83,15 @@ class UserProfile(APIView):
         user = request.user
         profile = UserSerializer(user)
         return Response(profile.data)
+    
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_cart_item(request, pk):
+    quantity = request.data.get('quantity')
+    item = CartItem.objects.get(pk=pk, cart__user=request.user)
+    item.quantity = quantity
+    item.save()
+    if(item.quantity == 0):
+        item.delete()
+
+    return Response({'status': 'updated'})
