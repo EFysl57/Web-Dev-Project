@@ -1,11 +1,13 @@
 @if(user) {
-<p>Username: {{ user.username }}</p>
-<p>Email: {{ user.email }}</p>
-<p>First Name: {{user.first_name}}</p>
-<p>Last Name: {{user.last_name}}</p>
-<p>Phone number: {{user.phone}}</p>
-<p>City: {{user.city}}</p>
+<div class="profile-container">
+	<p>Username: {{ user.username }}</p>
+	<p>Email: {{ user.email }}</p>
+	<p>First Name: {{user.first_name}}</p>
+	<p>Last Name: {{user.last_name}}</p>
+	<p>Phone number: {{user.phone}}</p>
+	<p>City: {{user.city}}</p>
 
 
-<button (click)="logout()" class="logout-btn">Log out</button>
+	<button (click)="logout()" class="logout-btn">Log out</button>
+</div>
 }

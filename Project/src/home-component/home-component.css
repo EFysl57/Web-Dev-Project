@@ -1,4 +1,4 @@
-/* ==================== COLOR PALETTE ==================== */
+
 :root {
   --primary-color: #6366f1;
   --secondary-color: #ec4899;
@@ -13,10 +13,23 @@
   --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* ==================== HOME CONTAINER ==================== */
+
 .home-container {
   width: 100%;
-  background: linear-gradient(180deg, var(--light-bg) 0%, var(--white) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.99) 0%, rgba(255,255,255,0.98) 100%);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  border: 1.5px solid #dbe3f0;
+  margin: 1rem 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+
+.home-container:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-2px);
 }
 
 /* ==================== HERO SECTION ==================== */
@@ -28,7 +41,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  margin: -3rem 2rem 0;
+  margin: 1rem 2rem 0;
   box-shadow: var(--shadow-lg);
 }
 
@@ -122,6 +135,15 @@
 /* ==================== PRODUCTS GRID ==================== */
 .products-section {
   padding: 2rem 0;
+}
+
+/* Make product area stand out against the page background */
+.products-section .products-grid {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
 }
 
 .products-grid {
