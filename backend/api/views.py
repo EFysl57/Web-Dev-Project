@@ -84,6 +84,15 @@ class UserProfile(APIView):
         profile = UserSerializer(user)
         return Response(profile.data)
     
+
+    def put(self, request):
+        user = request.user
+        profile = UserSerializer(user, data=request.data)
+        if profile.is_valid(): 
+            profile.save()
+        return Response(profile.data)
+        
+    
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_cart_item(request, pk):

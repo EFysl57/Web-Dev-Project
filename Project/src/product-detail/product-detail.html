@@ -8,7 +8,7 @@
           <h2>Description: </h2>
           <p>{{product.description}}</p>
           <h2>Price: {{product.price}}</h2>
-          <button class="buy-btn">Buy</button>
+          <button class="buy-btn" (click)="buyProduct()">Buy</button>
           <button class="cart-btn" (click)="addToCart(product.id)">Add to cart</button>  
       </div>
     

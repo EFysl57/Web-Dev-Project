@@ -27,8 +27,10 @@ export class ProductDetail {
   }
 
 
-
-
+  buyProduct() {
+    alert("Confirm operation");
+  }
+ 
 
 
   addToCart(id: number) {

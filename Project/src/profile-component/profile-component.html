@@ -1,13 +1,63 @@
 @if(user) {
 <div class="profile-container">
-	<p>Username: {{ user.username }}</p>
-	<p>Email: {{ user.email }}</p>
-	<p>First Name: {{user.first_name}}</p>
-	<p>Last Name: {{user.last_name}}</p>
-	<p>Phone number: {{user.phone}}</p>
-	<p>City: {{user.city}}</p>
+	<h1>Username: {{user.username}} </h1>
+	<form (ngSubmit)="saveProfile()">
+		
+		<div>
+			<label for="first_name">First name:</label>
+			<input
+				id="first_name"
+				type="text"
+				[(ngModel)]="user.first_name"
+				name="first_name"
+			/>
+		</div>
+
+		<div>
+			<label for="last_name">Last name:</label>
+			<input
+				id="last_name"
+				type="text"
+				[(ngModel)]="user.last_name"
+				name="last_name"
+			/>
+		</div>
 
 
+		<div>
+			<label for="City">City:</label>
+			<input
+				id="City"
+				type="text"
+				[(ngModel)]="user.city"
+				name="city"
+			/>
+		</div>
+
+		<div>
+			<label for="email">Email:</label>
+			<input
+				id="email"
+				type="email"
+				[(ngModel)]="user.email"
+				name="email"
+			/>
+		</div>
+
+		<div>
+			<label for="phone">Phone:</label>
+			<input
+				id="phone"
+				type="text"
+				[(ngModel)]="user.phone"
+				name="phone"
+			/>
+		</div>
+
+
+		<button type="submit" class="save-btn">Save</button>
+
+	</form>
 	<button (click)="logout()" class="logout-btn">Log out</button>
 </div>
 }

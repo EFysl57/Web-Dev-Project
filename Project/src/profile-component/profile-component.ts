@@ -3,14 +3,27 @@ import { AuthService } from '../app/auth.service';
 import { Router } from '@angular/router';
 import { ApiService } from '../api-service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+
 @Component({
   selector: 'app-profile-component',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './profile-component.html',
   styleUrl: './profile-component.css',
 })
 export class ProfileComponent {
-  user: any;
+  user = {
+    username: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone: '',
+    city: ''
+  };
+
+
+
   constructor(private api: ApiService, private authService: AuthService, private router: Router,
     private cd: ChangeDetectorRef
   ) {}
@@ -32,6 +45,20 @@ export class ProfileComponent {
     })
   }
   
+
+  saveProfile() {
+    this.api.updateUserProfile(this.user).subscribe({
+      next: (res: any) => {
+        alert('Profile saved successfully');
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+
+
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login'])

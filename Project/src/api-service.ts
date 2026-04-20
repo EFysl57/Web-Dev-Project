@@ -45,6 +45,10 @@ export class ApiService {
     return this.http.get(this.API + 'profile/');
   }
 
+  updateUserProfile(data: any) {
+    return this.http.put(this.API + 'profile/', data);
+  }
+
   updateCartItem(id: number, quantity: number) {
   return this.http.put(
     this.API + `cart/update/${id}/`,

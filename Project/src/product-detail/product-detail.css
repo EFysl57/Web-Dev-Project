@@ -5,6 +5,40 @@
 
 .product-info {
     display: flex;
-    margin: 10px;
+    margin: 40px;
     flex-direction: column;
+}
+
+
+img {
+    width: 450px;
+}
+
+
+button {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 1rem;
+  width: 30%;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  min-width: 120px;
+}
+
+.buy-btn {
+    background-color: green;
+}
+
+.cart-btn {
+    background-color: red;
+}
+
+button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
 }
