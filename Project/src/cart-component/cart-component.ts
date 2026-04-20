@@ -39,7 +39,7 @@ export class CartComponent {
       },
       error: (err) => {
         this.logout();
-        this.router.navigate(['/login'])
+        this.router.navigate(['/login']);
       }
   });
   }
