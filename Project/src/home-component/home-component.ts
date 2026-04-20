@@ -33,6 +33,7 @@ export class HomeComponent {
   addToCart(id: number) {
     if(this.authService.isLoggedIn()) {
       this.api.addToCart(id).subscribe();
+      alert("Added to cart");
     }
 
     else {
@@ -41,6 +42,8 @@ export class HomeComponent {
 
     
   }
+
+
 
   goToProduct(id: number) {
     this.router.navigate(['/product', id]);

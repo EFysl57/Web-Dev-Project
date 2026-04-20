@@ -4,11 +4,9 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(255,255,255,0.99) 0%, rgba(255,255,255,0.98) 100%);
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  border: 1.5px solid #dbe3f0;
   margin: 1rem;
+  background-color: white;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
@@ -24,8 +22,6 @@
   padding: 32px;
   border-radius: 20px;
   background: #ffffff;
-  border: 1px solid #dbe3f0;
-  box-shadow: 0 18px 40px rgba(31, 41, 55, 0.08);
 }
 
 .cart-header {

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { AuthService } from '../app/auth.service';
 @Component({
   selector: 'app-product-detail',
   imports: [CommonModule],
@@ -12,7 +13,7 @@ import { ChangeDetectorRef } from '@angular/core';
 export class ProductDetail {
   product: any;
 
-  constructor(private api: ApiService, private route: ActivatedRoute, private cd: ChangeDetectorRef) {}
+  constructor(private api: ApiService, private route: ActivatedRoute, private cd: ChangeDetectorRef, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
@@ -24,4 +25,23 @@ export class ProductDetail {
     }});
   
   }
+
+
+
+
+
+
+  addToCart(id: number) {
+    if(this.authService.isLoggedIn()) {
+      this.api.addToCart(id).subscribe();
+      alert("Added to cart");
+    }
+
+    else {
+      this.router.navigate(['login']);
+    }
+
+    
+  }
+
 }

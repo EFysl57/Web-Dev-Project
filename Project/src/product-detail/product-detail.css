@@ -1,3 +1,10 @@
-img {
-    width: 25%;
+.product-ctn {
+    display: flex;
+    flex-direction: row;
+}
+
+.product-info {
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
 }
