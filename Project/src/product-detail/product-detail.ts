@@ -28,7 +28,14 @@ export class ProductDetail {
 
 
   buyProduct() {
-    alert("Confirm operation");
+    if(this.authService.isLoggedIn()) {
+      alert("Confirm operation");
+    }
+
+    else {
+      this.router.navigate(['login'])
+    }
+    
   }
  
 
