@@ -1,6 +1,6 @@
 # Web-Dev-Project
 
-#Online Store Databridge
+## Online Store Databridge
 
 ## 📌 Project Description
 
@@ -50,9 +50,6 @@ After login, the user receives:
 
 ## Cart Functionality
 
-The cart supports both **guest users** and **authenticated users**:
-
-* Guests: cart is stored in session
 * Authenticated users: cart is stored in the database
 
 ### Features:
@@ -69,10 +66,12 @@ The cart supports both **guest users** and **authenticated users**:
 
 Users can view and update their profile:
 
-* Username
+* Firstname
+* Lastname
 * Email
 * Phone
 * Password
+* City
 
 Profile supports:
 
