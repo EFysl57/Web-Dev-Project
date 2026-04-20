@@ -38,7 +38,7 @@ export class CartComponent {
         this.cd.detectChanges();
       },
       error: (err) => {
-        this.authService.logout();
+        this.logout();
         this.router.navigate(['/login'])
       }
   });
@@ -61,4 +61,24 @@ export class CartComponent {
     }
     
   }
+
+
+  
+  logout() {
+    this.api.logout().subscribe({
+      next: () => {
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
+        this.router.navigate(['/login']);
+      },
+
+      error: () => {
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
+        this.router.navigate(['/login']);
+      }
+
+    })
+  }
+
 }

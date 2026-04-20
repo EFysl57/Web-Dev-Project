@@ -50,9 +50,16 @@ export class ApiService {
   }
 
   updateCartItem(id: number, quantity: number) {
-  return this.http.put(
-    this.API + `cart/update/${id}/`,
-    { quantity }
-  );
+    return this.http.put(
+      this.API + `cart/update/${id}/`,
+      { quantity }
+    );
+  }
+
+  logout() {
+    const refresh = localStorage.getItem('refresh');
+    return this.http.post(this.API + 'logout/', {refresh});
+  }
+
 }
-}
+

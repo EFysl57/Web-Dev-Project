@@ -31,8 +31,4 @@ export class AuthService {
     this.loggedInSubject.next(true);
   }
 
-  logout() {
-    localStorage.removeItem('access');
-    this.loggedInSubject.next(false);
-  }
 }

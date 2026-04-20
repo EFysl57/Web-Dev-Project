@@ -11,5 +11,6 @@ urlpatterns = [
     path('cart/add/', add_to_cart),
     path('cart/remove/<int:pk>/', RemoveFromCart.as_view()),
     path('profile/', UserProfile.as_view()),
-    path('cart/update/<int:pk>/', update_cart_item)
+    path('cart/update/<int:pk>/', update_cart_item),
+    path('logout/', logout_view)
 ]

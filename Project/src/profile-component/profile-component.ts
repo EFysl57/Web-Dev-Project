@@ -24,7 +24,7 @@ export class ProfileComponent {
 
 
 
-  constructor(private api: ApiService, private authService: AuthService, private router: Router,
+  constructor(private api: ApiService, private router: Router,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -60,7 +60,19 @@ export class ProfileComponent {
 
 
   logout() {
-    this.authService.logout();
-    this.router.navigate(['/login'])
+    this.api.logout().subscribe({
+      next: () => {
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
+        this.router.navigate(['/login']);
+      },
+
+      error: () => {
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
+        this.router.navigate(['/login']);
+      }
+
+    })
   }
 }
